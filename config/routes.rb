@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+   root'homes#top'
+
   #管理者用のルーティング設定
   devise_for :admins, controllers: {
   sessions:      'admins/sessions',
