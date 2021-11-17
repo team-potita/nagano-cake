@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20211117130617) do
+ActiveRecord::Schema.define(version: 20211117132156) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer  "end_user_id"
@@ -49,6 +49,15 @@ ActiveRecord::Schema.define(version: 20211117130617) do
     t.datetime "updated_at",                          null: false
     t.index ["email"], name: "index_end_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_end_users_on_reset_password_token", unique: true
+  end
+
+  create_table "order_datails", force: :cascade do |t|
+    t.integer  "item_id"
+    t.integer  "order_id"
+    t.integer  "price"
+    t.string   "quantity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "orders", force: :cascade do |t|
