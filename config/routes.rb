@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   registrations: 'admins/registrations'
 }
 #エンドユーザー側のルーティング設定
-devise_for :customers, controllers: {
+devise_for :end_users, controllers: {
   sessions:      'customers/sessions',
   passwords:     'customers/passwords',
   registrations: 'customers/registrations'
