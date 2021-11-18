@@ -11,6 +11,6 @@ Rails.application.routes.draw do
 devise_for :end_users, controllers: {
   sessions:      'customers/sessions',
   passwords:     'customers/passwords',
-  registrations: 'customers/registrations'
+  registrations: 'public/registrations'
 }
 end
