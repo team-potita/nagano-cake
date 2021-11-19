@@ -38,7 +38,7 @@ devise_for :end_users,skip: [:passwords,], controllers: {
     end
     resources :genres, only: [:index]
     resources :orders, only: [:index, :show, :new, :create] do
-      get 'comfirm'
+      post 'order/confirm' => 'orders#confirm'
       get 'complete'
     end
     resources :address, except: [:new, :show]
