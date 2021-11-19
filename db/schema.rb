@@ -10,66 +10,82 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20211117132156) do
+ActiveRecord::Schema.define(version: 2021_11_19_062959) do
 
   create_table "addresses", force: :cascade do |t|
-    t.integer  "end_user_id"
-    t.string   "postcode"
-    t.string   "addresses"
-    t.string   "name"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.integer "end_user_id"
+    t.string "postcode"
+    t.string "addresses"
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "admins", force: :cascade do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
-    t.string   "reset_password_token"
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["email"], name: "index_admins_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
+  end
+
+  create_table "cart_items", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "end_user_id"
+    t.integer "item_id"
+    t.integer "quantity"
   end
 
   create_table "categories", force: :cascade do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "name"
+    t.string "name"
   end
 
   create_table "end_users", force: :cascade do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
-    t.string   "reset_password_token"
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.string "last_name", null: false
+    t.string "first_name", null: false
+    t.string "last_name_kana", null: false
+    t.string "first_name_kana", null: false
+    t.string "postcode", null: false
+    t.string "tel", null: false
+    t.string "address", null: false
+    t.boolean "is_valid", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["email"], name: "index_end_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_end_users_on_reset_password_token", unique: true
   end
 
   create_table "order_datails", force: :cascade do |t|
-    t.integer  "item_id"
-    t.integer  "order_id"
-    t.integer  "price"
-    t.string   "quantity"
+    t.integer "item_id"
+    t.integer "order_id"
+    t.integer "price"
+    t.string "quantity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "orders", force: :cascade do |t|
-    t.integer  "end_user_id"
-    t.string   "postcode"
-    t.string   "address"
-    t.string   "name"
-    t.integer  "shipping_fee"
-    t.integer  "total_price"
-    t.integer  "peyment_method"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.integer "end_user_id"
+    t.string "postcode"
+    t.string "address"
+    t.string "name"
+    t.integer "shipping_fee"
+    t.integer "total_price"
+    t.integer "peyment_method"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

@@ -13,4 +13,6 @@ devise_for :end_users, controllers: {
   passwords:     'customers/passwords',
   registrations: 'customers/registrations'
 }
+
+ resources :cart_items
 end
