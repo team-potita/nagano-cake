@@ -18,9 +18,8 @@ devise_for :end_users,skip: [:passwords,], controllers: {
   sessions:      'end_users/sessions',
   registrations: 'public/registrations'
 }
-<<<<<<< HEAD
 
-namespace :admin do
+  namespace :admin do
     resources :items, except: [:destory]
     resources :orders, only: [:show, :update]
     resources :order_datails, only: [:update]
@@ -44,18 +43,4 @@ namespace :admin do
     end
     resources :address, except: [:new, :show]
   end
-=======
-#商品のルーティング
-resources :items ,only: [:index,:show]
-
-resources :cart_items,only: [:index,:update,:create,:destroy]
-get 'cart_items' => 'public/cart_items#destroy_all'
-
-resources :orders,only:[:index,:new,:show,:create]
-get 'orders' =>  'public/orders#complete'#注文確定画面
-get 'orders' =>  'public/orders#comfirm'#注文確認画面
-
-resources :addreses,only:[:index,:create,:edit,:update,:destroy]
-
->>>>>>> 4d03e124d03416f9385ef12b0d468de2d337cc6a
 end
