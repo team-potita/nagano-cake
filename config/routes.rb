@@ -44,4 +44,5 @@ devise_for :end_users,skip: [:passwords,], controllers: {
     end
     resources :address, except: [:new, :show]
   end
+
 end
