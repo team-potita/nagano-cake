@@ -9,8 +9,8 @@ Rails.application.routes.draw do
     resources :order_details, only: [:update]
 
     #管理者用のルーティング
-    devise_for :admins,skip:[:registrations, :passwords], controllers: {
-    sessions:'admins/sessions'
+    devise_for :admin,skip:[:registrations, :passwords], controllers: {
+    sessions:'admin/sessions'
   }
   end
 #エンドユーザー側のルーティング設定
@@ -19,11 +19,12 @@ devise_for :end_users,skip: [:passwords,], controllers: {
   registrations: 'public/registrations'
 }
 
+
   namespace :admin do
     resources :items, except: [:destory]
     resources :orders, only: [:show, :update]
     resources :order_datails, only: [:update]
-    resources :genres
+    resources :cates
   end
 
   namespace :public do
@@ -38,9 +39,10 @@ devise_for :end_users,skip: [:passwords,], controllers: {
     end
     resources :genres, only: [:index]
     resources :orders, only: [:index, :show, :new, :create] do
-      get 'comfirm'
+      post 'order/confirm' => 'orders#confirm'
       get 'complete'
     end
     resources :address, except: [:new, :show]
   end
+
 end

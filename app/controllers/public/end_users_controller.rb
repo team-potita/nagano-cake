@@ -1,7 +1,5 @@
 class Public::EndUsersController < ApplicationController
-  def show
-  end
-  
+
   def edit
   end
   
@@ -10,9 +8,5 @@ class Public::EndUsersController < ApplicationController
   
   def unsubscribe
   end
-  
-  def withdraw
-  end
-  
-  
+
 end
