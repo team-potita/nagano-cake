@@ -23,7 +23,7 @@ devise_for :end_users,skip: [:passwords,], controllers: {
     resources :items, except: [:destory]
     resources :orders, only: [:show, :update]
     resources :order_datails, only: [:update]
-    resources :genres
+    resources :cates
   end
 
   namespace :public do
