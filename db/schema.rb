@@ -67,6 +67,17 @@ ActiveRecord::Schema.define(version: 2021_11_19_062959) do
     t.index ["reset_password_token"], name: "index_end_users_on_reset_password_token", unique: true
   end
 
+  create_table "items", force: :cascade do |t|
+    t.integer "category_id"
+    t.string "name"
+    t.string "image"
+    t.string "item"
+    t.integer "price"
+    t.datetime "create_at"
+    t.datetime "updated_at", null: false
+    t.datetime "created_at", null: false
+  end
+
   create_table "order_datails", force: :cascade do |t|
     t.integer "item_id"
     t.integer "order_id"
