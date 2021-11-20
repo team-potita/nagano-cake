@@ -19,6 +19,7 @@ devise_for :end_users,skip: [:passwords,], controllers: {
   registrations: 'public/registrations'
 }
 
+
   namespace :admin do
     resources :items, except: [:destory]
     resources :orders, only: [:show, :update]
@@ -43,4 +44,5 @@ devise_for :end_users,skip: [:passwords,], controllers: {
     end
     resources :address, except: [:new, :show]
   end
+
 end
