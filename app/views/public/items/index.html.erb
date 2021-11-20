@@ -1,0 +1,65 @@
+<div class="container my-5">
+ <div class="row">
+    <div class="col-3">
+      <%= render 'category', categorys: @categorys %>
+    </div>
+
+    <div class="col-9">
+
+<!--動的ジャンル名-->
+      <div class="row">
+        <h2 class="red-border px-3">
+          <% if params[:category_id] %>
+            <%= @category.name %>
+          <% else %>
+            商品一覧
+          <% end %>
+        </h2>
+      </div>
+
+<!-- 販売件数 -->
+      <div class="row my-3 ml-1">
+        <strong class="brown-border">
+          全
+          <% if params[:category_id] %>
+    	     <%= @items.order(created_at: :desc).where(sale_status: "販売可").count %>
+          <% else %>
+    		    <%= Item.where(sale_status: "販売可").count %>
+          <% end %>
+          件
+        </strong>
+      </div>
+
+
+	    <div class="row">
+	    	<% @items.each do |item| %>
+          <div class="col-3 mt-3"> <!--ひとつのブロックをラップしてカラムを指定する-->
+		        <%= link_to item_path(item) do %><!--それをeach文で回す-->
+		          <%= attachment_image_tag item, :image, size: "150x150", format: 'jpeg', fallback: "noimage.jpg", class: 'rounded' %>
+		        <% end %><br>
+		        <span class="text-muted"><%= link_to item.category.name, category_items_path(item.category_id) %></span><br>
+		       ss="ml-auto"><%= (item.price * 1.1).floor %>円</span><br>
+          </div> <strong class="red-border"><%= item.name %></strong><br>
+		        <span cla
+        <% end %>
+	    </div>
+
+
+   </div>
+  </div>
+
+
+
+
+
+  	<!-- ページネーション -->
+ <div class="container">
+	<div class="row">
+	 <div class="col-md-4 offset-md-4 py-2 mt-5">
+	 	<%= paginate @items %>
+	 </div>
+	</div>
+ </div>
+ 	<!-- ページネーション -->
+
+ </div>
