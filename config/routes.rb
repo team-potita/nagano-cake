@@ -9,8 +9,8 @@ Rails.application.routes.draw do
     resources :order_details, only: [:update]
 
     #管理者用のルーティング
-    devise_for :admins,skip:[:registrations, :passwords], controllers: {
-    sessions:'admins/sessions'
+    devise_for :admin,skip:[:registrations, :passwords], controllers: {
+    sessions:'admin/sessions'
   }
   end
 #エンドユーザー側のルーティング設定
