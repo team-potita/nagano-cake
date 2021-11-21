@@ -11,5 +11,9 @@ class Public::OrdersController < ApplicationController
 
   def create
   end
+  
+  def confirm
+    @order = Order.new(end_user_params)
+  end
 
 end
