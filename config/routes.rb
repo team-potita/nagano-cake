@@ -1,23 +1,16 @@
 Rails.application.routes.draw do
-   root'homes#top'
-  namespace :admin do
-    #商品のルーティング
-    resources :items, only: [:index,:create,:show,:edit,:update]
-    #注文のルーティング
-    resources :orsers, only: [:show,:update]
-    #制作状況のルーティング
-    resources :order_details, only: [:update]
-
     #管理者用のルーティング
     devise_for :admins,skip:[:registrations, :passwords], controllers: {
     sessions:'admins/sessions'
   }
-  end
 #エンドユーザー側のルーティング設定
 devise_for :end_users,skip: [:passwords,], controllers: {
   sessions:      'end_users/sessions',
   registrations: 'public/registrations'
 }
+
+ root to: "homes#top"
+  get "/about" => "homes#about"
 
   namespace :admin do
     resources :items, except: [:destory]

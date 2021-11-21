@@ -3,54 +3,116 @@
   <head>
     <title>NaganoCake</title>
     <%= csrf_meta_tags %>
-
+    <%= csp_meta_tag %>
+    <script src="https://kit.fontawesome.com/7d6d903ecb.js" crossorigin="anonymous"></script>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-  <header>
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+
+    <header style="font-family: 'Noto Sans JP',serif;">
+      <nav class="navbar navbar-expand-lg " id="navbarHeader">
         <div class="container">
-          <a class="navbar-brand" href="/"><span>Ngano Cake</span></a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
+          <div class="navbar navbar-dark shadow-sm">
+            <div class="container d-flex justify-content-between">
+              <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+            </div>
+          </div>
+
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav ml-auto">
-            <% elsif user_signed_in? && current_user.admin? %>
-              <li><%= link_to ' 商品一覧',user_path(current_user.id),class: 'fas fa-home nav-link text-light' %></li>
-              <li><%= link_to ' 会員一覧',users_path,class: 'fas fa-users nav-link text-light' %></li>
-              <li><%= link_to ' 注文履歴一覧',books_path ,class: 'fas fa-book-open nav-link text-light'%></li>
-              <li><%= link_to ' ジャンル一覧', destroy_user_session_path, method: :delete,class: 'fas fa-sign-out-alt nav-link text-light' %></li>
-              <li><%= link_to ' ログアウト', destroy_user_session_path, method: :delete,class: 'fas fa-sign-out-alt nav-link text-light' %></li>
-            <% elsif user_signed_in? && current_user.public? %>
-              <li><%= link_to ' マイページ',user_path(current_user.id),class: 'fas fa-home nav-link text-light' %></li>
-              <li><%= link_to ' 商品一覧',users_path,class: 'fas fa-users nav-link text-light' %></li>
-              <li><%= link_to ' カート',books_path ,class: 'fas fa-book-open nav-link text-light'%></li>
-              <li><%= link_to ' ログアウト', destroy_user_session_path, method: :delete,class: 'fas fa-sign-out-alt nav-link text-light' %></li>
+
+            <% if admin_signed_in? %>
+              <li class="nav-item">
+                <%= link_to admin_items_path, class: 'nav-link text-light  ml-2' do %>
+                商品一覧
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to admin_end_users_path, class: 'nav-link text-light  ml-2' do %>
+                会員一覧
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to admin_orders_path, class: 'nav-link text-light  ml-2' do %>
+                注文履歴一覧
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to admin_categorys_path, class: 'nav-link text-light  ml-2' do %>
+                ジャンル一覧
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to destroy_admin_session_path, class: 'nav-link text-light  ml-2', method: :delete do %>
+                ログアウト
+                <% end %>
+              </li>
+            <% elsif end_user_signed_in? %>
+              <span class="mt-2" style="color: white;">ようこそ、<%= current_end_user.last_name %>さん</span>
+              <li class="nav-item">
+                <%= link_to public_end_user_path, class: 'nav-link text-light  ml-2' do %>
+                マイページ
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to public_items_path, class: 'nav-link text-light  ml-2' do %>
+                商品一覧
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to public_cart_items_path, class: 'nav-link text-light  ml-2' do %>
+                カート
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to destroy_end_user_session_path, class: 'nav-link text-light  ml-2', method: :delete do %>
+                ログアウト
+                <% end %>
+              </li>
             <% else %>
-              <li><%= link_to ' About',root_path,class: 'fas fa-home nav-link text-light' %></li>
-              <li><%= link_to ' 商品一覧',home_about_path,class: 'fas fa-link nav-link text-light' %></li>
-              <li><%= link_to ' 新規登録', new_user_registration_path,class: 'fas fa-user-plus nav-link text-light' %></li>
-              <li><%= link_to ' ログイン', new_user_session_path ,class: 'fas fa-sign-in-alt nav-link text-light'%></li>
+              <li class="nav-item">
+                <%= link_to about_path, class: 'nav-link text-light  ml-2' do %>
+                About
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to public_items_path, class: 'nav-link text-light  ml-2' do %>
+                商品一覧
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to new_end_user_registration_path, class: 'nav-link text-light  ml-2' do %>
+                新規登録
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to new_end_user_session_path, class: 'nav-link text-light  ml-2' do %>
+                ログイン
+                <% end %>
+              </li>
             <% end %>
-            </ul>
           </div>
         </div>
       </nav>
-  </header>
-  <main>
+    </header>
+
+    <main>
     <%= yield %>
-  </main>
- <footer>
-  <div class='container mt-5'>
-    <div class='row'>
-      <div class='mx-auto'>
-        <p></p>
+    </main>
+
+    <footer class="text-white text-center">
+      <div class="container">
+          <div class="mx-auto">
+            <p class="pt-3" style="font-size:15px;">
+            </p>
+            <p style="font-size:12px;">Copyright ©naganocake All Rights Reserved.</p>
+          </div>
       </div>
-    </div>
-  </div>
-</footer>
+    </footer>
   </body>
 </html>
