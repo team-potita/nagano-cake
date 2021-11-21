@@ -2,6 +2,7 @@
 
 class Public::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
+  before_action :reject_inactive_end_user, only: [:create]
 
 def new
 end
@@ -30,4 +31,14 @@ end
   # def configure_sign_in_params
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   # end
+  
+  def reject_inactive_user
+    @user = User.find_by(name: params[:end_user][:name])
+    if @user
+      if @user.valid_password?(params[:end_user][:password]) && !@user.is_valid
+        redirect_to new_user_session_path
+      end
+    end
+  end
+
 end
