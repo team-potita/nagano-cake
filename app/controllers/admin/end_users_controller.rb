@@ -31,5 +31,3 @@ class Admin::EndUsersController < ApplicationController
     end
 end
 
-
-end
