@@ -33,15 +33,7 @@ class DeviseCreateEndUsers < ActiveRecord::Migration[5.0]
       # t.datetime :locked_at
 
 
-      t.string :last_name , :null => false#苗字
-      t.string :first_name, :null => false#名前
-      t.string :last_name_kana, :null => false#カナ苗字
-      t.string :first_name_kana, :null => false#カナ名前
 
-      t.string :postcode, :null => false#郵便番号
-      t.string :tel, :null => false#電話番号
-      t.string :address, :null => false#住所
-      t.boolean :is_valid, :null => false#退会フラグ
 
 
       t.timestamps null: false
