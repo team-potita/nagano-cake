@@ -44,9 +44,6 @@ class DeviseCreateEndUsers < ActiveRecord::Migration[5.0]
       t.boolean :is_valid, :null => false#退会フラグ
 
 
-
-
-
       t.timestamps null: false
     end
 
@@ -55,4 +52,5 @@ class DeviseCreateEndUsers < ActiveRecord::Migration[5.0]
     # add_index :end_users, :confirmation_token,   unique: true
     # add_index :end_users, :unlock_token,         unique: true
   end
+  
 end
