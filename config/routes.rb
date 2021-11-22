@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
     #管理者用のルーティング
-    devise_for :admins,skip:[:registrations, :passwords], controllers: {
-    sessions:'admins/sessions'
+    devise_for :admin,skip:[:registrations, :passwords], controllers: {
+    sessions:'admin/sessions'
   }
 #エンドユーザー側のルーティング設定
 devise_for :end_users,skip: [:passwords,], controllers: {
@@ -18,7 +18,7 @@ devise_for :end_users,skip: [:passwords,], controllers: {
     resources :categorys,only:[:index,:create,:edit,:update]
     resources :order_datails, only: [:update]
     resources :end_users,only:[:index,:show,:edit,:update]
-    resources :categorys
+
 
   end
 

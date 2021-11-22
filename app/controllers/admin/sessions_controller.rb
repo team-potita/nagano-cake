@@ -2,16 +2,8 @@
 
 class Admin::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
-  def new
-  end
 
-  def create
-  end
-  
-  def destroy
-  end
-  
-  
+
 
   # GET /resource/sign_in
   # def new
@@ -36,6 +28,6 @@ class Admin::SessionsController < Devise::SessionsController
   # end
    private
   def after_sign_in_path_for(resource)
-      admin_orders_path
+      admin_root_path
   end
 end
