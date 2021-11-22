@@ -1,11 +1,12 @@
 <div class="container my-5">
  <div class="row">
     <div class="col-3">
-      <%= render 'category', categorys: @categorys %>
+       <%= render 'category', categories: @categorys %>
     </div>
 
     <div class="col-9">
 
+<!--動的ジャンル名-->
       <div class="row">
         <h2 class="red-border px-3">
           <% if params[:category_id] %>
@@ -16,6 +17,7 @@
         </h2>
       </div>
 
+<!-- 販売件数 -->
       <div class="row my-3 ml-1">
         <strong class="brown-border">
           全
@@ -31,16 +33,16 @@
 
 	    <div class="row">
 	    	<% @items.each do |item| %>
-          <div class="col-3 mt-3">
-		        <%= link_to item_path(item) do %>
+          <div class="col-3 mt-3"> <!--ひとつのブロックをラップしてカラムを指定する-->
+		        <%= link_to item_path(item) do %><!--それをeach文で回す-->
 		          <%= attachment_image_tag item, :image, size: "150x150", format: 'jpeg', fallback: "noimage.jpg", class: 'rounded' %>
 		        <% end %><br>
 		        <span class="text-muted"><%= link_to item.category.name, category_items_path(item.category_id) %></span><br>
-		       ss="ml-auto"><%= (item.price * 1.1).floor %>円</span><br>
-          </div> <strong class="red-border"><%= item.name %></strong><br>
-		        <span cla
+		        <strong class="red-border"><%= item.name %></strong><br>
+		        <span class="ml-auto"><%= (item.price * 1.1).floor %>円</span><br>
+          </div>
         <% end %>
-	     </div>
+	    </div>
 
 
    </div>
