@@ -1,0 +1,9 @@
+<h2>注文情報確認</h2>
+<%= @item.name %>
+<%= @item.price %>
+<%= @order.amount %>
+<%= @order.quantity %>
+  
+<% @orders.each do |order| %>
+  <%= link_to "Show", item_order_path(item.id),class: 'btn btn-default' %>
+<% end %>
