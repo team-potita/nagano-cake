@@ -6,7 +6,7 @@
 	    <div class="row mx-auto mt-3">
 		<span class="brown-border text-center"><%= link_to "すべての商品", items_path %></span>
 		</div>
-	    <% categorys.each do |category| %>
+	    <% categories.each do |category| %>
 		<%= link_to category_items_path(category) do %>
 			<div class="row mx-auto mt-3">
 			<span class="brown-border text-center"><%= category.name %></span>

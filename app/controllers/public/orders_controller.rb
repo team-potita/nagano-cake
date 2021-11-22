@@ -21,7 +21,6 @@ class Public::OrdersController < ApplicationController
     redirect_to items_path
   end
 
-
   def confirm
     @order = Order.new
     @cart_items = current_end_user.cart_items  
