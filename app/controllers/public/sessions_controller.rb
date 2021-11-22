@@ -2,7 +2,7 @@
 
 class Public::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
-  before_action :reject_inactive_end_user, only: [:create]
+before_action :end_user_state, only: [:create]
 
 def new
 end
@@ -32,12 +32,16 @@ end
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   # end
   
-  def reject_inactive_user
-    @user = User.find_by(name: params[:end_user][:name])
-    if @user
-      if @user.valid_password?(params[:end_user][:password]) && !@user.is_valid
-        redirect_to new_user_session_path
-      end
+  protected
+# 退会しているかを判断するメソッド
+  def edn_user_state
+  ## 【処理内容1】 入力されたemailからアカウントを1件取得
+    @end_user = End_user.find_by(email: parms[:end_user][:email])
+  ## アカウントを取得できなかった場合、このメソッドを終了する
+    return if !@end_user
+  ## 【処理内容2】 取得したアカウントのパスワードと入力されたパスワードが一致してるかを判別
+    if @end_user.valid_password?(params[:end_user][:password])
+    ## 【処理内容3】
     end
   end
 
