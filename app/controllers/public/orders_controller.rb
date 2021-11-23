@@ -3,6 +3,7 @@ class Public::OrdersController < ApplicationController
   def index
     @item = Item.find(params[:item_id])
     @order = @item.order
+    @orders = Order.all
   end
 
   def show
@@ -12,6 +13,7 @@ class Public::OrdersController < ApplicationController
 
   def new
     @order = Order.new
+    @end_user = current_end_user
   end
 
   def create
@@ -23,23 +25,23 @@ class Public::OrdersController < ApplicationController
 
   def confirm
     @order = Order.new
-    @cart_items = current_end_user.cart_items  
-    @order.payment = params[:order][:payment]  
-    if params[:order][:address_option] == "0"  
-      @order.postal_code = current_end_user.postal_code  
-      @order.order_address = current_end_user.address  
-    elsif params[:order][:address_option] == "1"  
-      @sta = params[:order][:order_address].to_i  
-      binding.pry  
-      @order_address = Address.find(@sta)  
-      @order.postal_code = @order_address.postal_code  
-      @order.order_address = @order_address.address  
-      @order.dear_name = @order_address.dear_name  
+    @cart_items = current_end_user.cart_items
+    @order.payment = params[:order][:payment]
+    if params[:order][:address_option] == "0"
+      @order.postal_code = current_end_user.postal_code
+      @order.order_address = current_end_user.address
+    elsif params[:order][:address_option] == "1"
+      @sta = params[:order][:order_address].to_i
+      binding.pry
+      @order_address = Address.find(@sta)
+      @order.postal_code = @order_address.postal_code
+      @order.order_address = @order_address.address
+      @order.dear_name = @order_address.dear_name
 
-    elsif params[:order][:address_option] == "2"  
-      @order.postal_code = params[:order][:postal_code]  
-      @order.order_address = params[:order][:order_address]  
-    end  
+    elsif params[:order][:address_option] == "2"
+      @order.postal_code = params[:order][:postal_code]
+      @order.order_address = params[:order][:order_address]
+    end
   end
 
 private
