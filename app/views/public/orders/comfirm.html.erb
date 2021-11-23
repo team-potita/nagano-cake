@@ -1,8 +1,16 @@
 <h2>注文情報確認</h2>
   <%= @item.name %>
   <%= @item.price %>
-  <%= @order.amount %>
-  <%= @order.quantity %>
+  <%= @item.quantity %>
+  <%= @item.amount %>
+  
+  <p>送料</p>
+  <!--送料<%= %>-->
+  <p>商品合計</p>
+  <%= @item.amount %>
+  <p>請求金額</p>
+  <!--請求額<%= %>-->
+
   
 <%= form_with model:[@item, @order], do |f| %>
   <%= f.hidden_field :amount %>
