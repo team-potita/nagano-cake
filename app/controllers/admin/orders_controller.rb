@@ -1,30 +1,33 @@
 class Admin::OrdersController < ApplicationController
+  before_action :authenticate_admin!
 
- before_action :authenticate_admin!
-
-    def index
-      @orders = Order.page(params[:page]).reverse_order
+  def show
+    @order=Order.find(params[:id])
+    @order_details = @order.order_details
+    @total_payment = 0
+    @order_details.each do |order_item|
+      @total_payment += order_item.price * order_item.amount
     end
+    session[:order_id] = params[:id]
+  end
 
-    def show
-      @order = Order.find(params[:id])
-    end
-
-    def update #注文ステータスの更新
-      @order = Order.find(params[:id])
-      @order.update(order_params)
-      if @order.payment_confirm? #enumの確認メソッド
-        @order.order_details.each do |order_detail|
-        order_detail.waiting_production! #enumの更新メソッド
+  def update
+    @order = Order.find(params[:id])
+    @order.update(order_params)
+    if @order.status == "payment_confirmation"
+      @order_details = @order.order_details
+      @order_details.each do |order_detail|
+        order_detail.making_status = "production_pending"
+        order_detail.save
       end
-      end
-      redirect_to admin_order_path
-
     end
+    redirect_to request.referer
+  end
 
-    private
-    def order_params
-      params.require(:order).permit(:customer_id, :postage, :billing, :payment, :shipping_name, :shipping_post_cord, :shipping_address, :status)
-    end
+  private
+
+  def order_params
+    params.require(:order).permit(:status)
+  end
+
 end
-

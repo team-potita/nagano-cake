@@ -1,0 +1,5 @@
+<h2>注文履歴一覧</h2>
+
+<% @orders.each do |order| %>
+  <%= link_to "Show", item_order_path(item.id),class: 'btn btn-default' %>
+<% end %>

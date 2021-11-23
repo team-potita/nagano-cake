@@ -30,17 +30,18 @@ devise_for :end_users,skip: [:passwords,], controllers: {
       patch 'withdraw' => 'end_users#withdraw'
   end
 
-    resources :items, only: [:index, :show]
+    resources :items, only: [:index, :show] do
+      resources :orders, only: [:index, :show, :new, :create] do
+        collection do
+          post 'order/confirm' => 'orders#confirm'
+          get 'complete'
+        end
+      end
+    end
     resources :cart_items, only: [:index, :create, :update, :destory] do
       delete 'destroy_all'
     end
     resources :categorys, only: [:index]
-    resources :orders, only: [:index, :show, :new, :create] do
-      collection do
-        post 'order/confirm' => 'orders#confirm'
-        get 'complete'
-      end
-    end
 
     resources :address, except: [:new, :show]
   end

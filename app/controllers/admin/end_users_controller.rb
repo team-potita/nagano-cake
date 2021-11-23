@@ -2,19 +2,19 @@ class Admin::EndUsersController < ApplicationController
    before_action :authenticate_admin!
 
     def index
-        @end_users = End_Users.page(params[:page])
+        @end_users = EndUsers.page(params[:page])
     end
 
     def show
-       @end_users = End_Users.find(params[:id])
+       @end_users = EndUsers.find(params[:id])
     end
 
     def edit
-       @end_users = End_Users.find(params[:id])
+       @end_users = EndUsers.find(params[:id])
     end
 
     def update
-       @end_users = End_Users.find(params[:id])
+       @end_users = EndUsers.find(params[:id])
      if
        @end_users.update(end_users_params)
        flash[:success] = "登録情報を更新しました"
@@ -31,3 +31,10 @@ class Admin::EndUsersController < ApplicationController
     end
 end
 
+def full_name
+  self.last_name + " " + self.first_name
+end
+
+def full_name_kana
+  self.last_name + " " + self.first_name
+end
