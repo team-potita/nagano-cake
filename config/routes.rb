@@ -8,7 +8,7 @@ devise_for :end_users,skip: [:passwords,], controllers: {
   sessions:      'public/sessions',
   registrations: 'public/registrations'
 }
-  root to: "public/homes#top"
+
    get "/about" => "public/homes#about"
 
   namespace :admin do
@@ -23,7 +23,7 @@ devise_for :end_users,skip: [:passwords,], controllers: {
   end
 
   scope module: :public do
-
+    root to: "homes#top"
     resources :end_users, only: [:show, :edit, :update] do
       get 'unsubscribe' => 'end_users#unsubscribe', as: 'confirm_unsubscribe'
       # patch ':id/withdraw' => 'end_users#withdraw', as: 'withdraw_end_user'
