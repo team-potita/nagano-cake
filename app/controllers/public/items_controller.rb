@@ -1,7 +1,7 @@
 class Public::ItemsController < ApplicationController
 
  def index
-  	  @categories = Category.all
+  	  @categorys = Category.all
 
 
     if params[:category_id]
