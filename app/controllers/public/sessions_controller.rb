@@ -36,7 +36,7 @@ end
 # 退会しているかを判断するメソッド
   def edn_user_state
   ## 【処理内容1】 入力されたemailからアカウントを1件取得
-    @end_user = End_user.find_by(email: parms[:end_user][:email])
+    @end_user = EndUser.find_by(email: parms[:end_user][:email])
   ## アカウントを取得できなかった場合、このメソッドを終了する
     return if !@end_user
   ## 【処理内容2】 取得したアカウントのパスワードと入力されたパスワードが一致してるかを判別
