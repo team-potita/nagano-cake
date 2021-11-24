@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
     when Admin
       admin_root_path
     when EndUser
+      root_path
     end
   end
 
