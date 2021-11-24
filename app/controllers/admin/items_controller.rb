@@ -1,21 +1,21 @@
 class Admin::ItemsController < ApplicationController
 
   def index
-    @items = Items.all.page(params[:page]).per(10)
+    @items = Item.all.page(params[:page]).per(10)
   end
 
   def show
-    @items = Items.find(params[:id])
+    @item = Item.find(params[:id])
   end
 
   def new
-    @items = Items.new
+    @item = Item.new
   end
 
   def create
-    @items = Items.new(items_params)
-    if @product.save
-      redirect_to admin_items_path(@items.id)
+    @item= Item.new(item_params)
+    if @item.save
+      redirect_to admin_item_path(@item.id)
       flash[:notice] = "商品を新規追加しました。"
     else
       render :new
@@ -23,13 +23,13 @@ class Admin::ItemsController < ApplicationController
   end
 
   def edit
-    @items = items.find(params[:id])
+    @item = Item.find(params[:id])
   end
 
   def update
-    @items = Items.find(params[:id])
-    if @items.update(product_params)
-      redirect_to admin_product_path(@items)
+    @item = Item.find(params[:id])
+    if @item.update(item_params)
+      redirect_to admin_item_path(@item.id)
       flash[:notice] = "商品情報を更新しました。"
     else
       render :edit
@@ -39,8 +39,8 @@ class Admin::ItemsController < ApplicationController
 
   private
 
-  def items_params
-    params.require(:items).permit(:name, :price, :caption, :image, :is_active, :categorys_id)
+  def item_params
+    params.require(:item).permit(:name, :price, :caption, :image, :category_id)
   end
 
 end

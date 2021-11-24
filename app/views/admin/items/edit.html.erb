@@ -28,7 +28,7 @@
 
       <div class="row mb-3">
         <div class="col-3 font-weight-bold"><%= f.label :ジャンル %></div>
-        <div class="col-4 mr-auto"><%= f.collection_select :genre_id, Genre.all, :id, :name, include_blank: "-- 選択してください --"  %></div>
+        <div class="col-4 mr-auto"><%= f.collection_select :category_id, Category.all, :id, :name, include_blank: "-- 選択してください --"  %></div>
       </div>
 
       <div class="row mb-3">

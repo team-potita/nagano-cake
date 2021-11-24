@@ -1,29 +1,29 @@
 class Admin::CategorysController < ApplicationController
 
 def index
-    @categorys = Categorys.new
-    @categorys = Categorys.all
+    @category = Category.new
+    @categorys = Category.all
 end
 
   def create
-    @categorys = Categorys.new(categorys_params)
-    if @categorys.save
+    @category = Category.new(category_params)
+    if @category.save
       redirect_to admin_categorys_path
       flash[:notice] = "ジャンルを新規追加しました。"
     else
-      @categorys = Categorys.all
+      @categorys = Category.all
       render :index
     end
   end
 
   def edit
-    @categorys = Categorys.find(params[:id])
+    @category = Category.find(params[:id])
   end
 
   def update
-    @categorys = Categorys.find(params[:id])
-    if @categorys.update(categorys_params)
-      redirect_to admin_genres_path
+    @category = Category.find(params[:id])
+    if @category.update(category_params)
+      redirect_to admin_categorys_path
       flash[:notice] = "ジャンル情報を更新しました。"
     else
       render :edit
@@ -31,8 +31,8 @@ end
   end
 
   private
-  def categorys_params
-    params.require(:categorys).permit(:name)
+  def category_params
+    params.require(:category).permit(:name)
   end
 
 

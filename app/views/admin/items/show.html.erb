@@ -12,13 +12,13 @@
         <div class="col-8"><%= @item.name %></div>
 
         <div class="col-3 mb-3 font-weight-bold">商品説明</div>
-        <div class="col-8"><%= @item.introduction %></div>
+        <div class="col-8"><%= @item.caption %></div>
 
         <div class="col-3 mb-3 font-weight-bold">ジャンル</div>
-        <div class="col-8"><%= @item.genre.name %></div>
+        <div class="col-8"><%= @item.category.name %></div>
 
-        <div class="col-3 mb-3 font-weight-bold">税込価格<br>(税抜価格)</div>
-        <div class="col-8"><%= @item.add_tax_price.to_s(:delimited) %>円 <br> (<%= @item.price.to_s(:delimited) %>円)</div>
+        <div class="col-3 mb-3 font-weight-bold">税込価格</div>
+        <div class="col-8"><%= @item.price.to_s(:delimited) %>円</div>
         <!--":delimited"アクションは数字を3桁毎に区切るメソッド-->
 
         <div class="col-3 mb-3 font-weight-bold">販売ステータス</div>
