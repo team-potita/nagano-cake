@@ -2,9 +2,6 @@
 	<div class="row d-flex aline-items-center">
 		<strong class="red-border px-3 pb-1">ジャンル</strong>
 	</div>
-
-	   
-	    <% categories.each do |category| %>
 		<%= link_to category_items_path(category) do %>
 			<div class="row mx-auto mt-3">
 			<span class="brown-border text-center"><%= category.name %></span>

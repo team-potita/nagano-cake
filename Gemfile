@@ -52,5 +52,3 @@ gem 'devise'
 
 gem 'bootstrap', '~> 4.5'
 gem 'jquery-rails'
-
-gem "enum_help"

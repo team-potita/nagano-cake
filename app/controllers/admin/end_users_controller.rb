@@ -2,23 +2,23 @@ class Admin::EndUsersController < ApplicationController
    before_action :authenticate_admin!
 
     def index
-        @end_users = EndUsers.page(params[:page])
+        @end_users = EndUser.all.page(params[:page])
     end
 
     def show
-       @end_users = EndUsers.find(params[:id])
+       @end_user = EndUser.find(params[:id])
     end
 
     def edit
-       @end_users = EndUsers.find(params[:id])
+       @end_user = EndUser.find(params[:id])
     end
 
     def update
-       @end_users = EndUsers.find(params[:id])
+       @end_user = EndUser.find(params[:id])
      if
-       @end_users.update(end_users_params)
+       @end_user.update(end_users_params)
        flash[:success] = "登録情報を更新しました"
-       redirect_to "/admin/end_users/#{@end_users.id}"
+       redirect_to "/admin/end_users/#{@end_user.id}"
      else
        render :edit
      end
