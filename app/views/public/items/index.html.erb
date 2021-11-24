@@ -1,7 +1,7 @@
 <div class="container my-5">
  <div class="row">
     <div class="col-3">
-       <%= render 'category', categories: @categorys %>
+       <%= render 'category', categories: @categories %>
     </div>
 
     <div class="col-9">
@@ -22,9 +22,9 @@
         <strong class="brown-border">
           全
           <% if params[:category_id] %>
-    	     <%= @items.order(created_at: :desc).where(sale_status: "販売可").count %>
+    	     <%= @items.order(created_at: :desc).count %>
           <% else %>
-    		    <%= Item.where(sale_status: "販売可").count %>
+    		    <%= Item.count %>
           <% end %>
           件
         </strong>
@@ -52,14 +52,6 @@
 
 
 
-  	<!-- ページネーション -->
- <div class="container">
-	<div class="row">
-	 <div class="col-md-4 offset-md-4 py-2 mt-5">
-	 	<%= paginate @items %>
-	 </div>
-	</div>
- </div>
- 	<!-- ページネーション -->
+
 
  </div>

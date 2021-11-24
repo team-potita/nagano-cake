@@ -1,7 +1,8 @@
 class Public::HomesController < ApplicationController
 
   def top
-    @items = Item.where(sale_status: "販売可")
+    @items = Item.all
+    @category = Category.all
   end
 
   def about
