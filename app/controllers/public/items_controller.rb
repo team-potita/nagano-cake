@@ -1,18 +1,18 @@
 class Public::ItemsController < ApplicationController
 
  def index
-  	  @categories = Category.where(is_enabled: true)
+  	  @categories = Category.all
 
 
     if params[:category_id]
 
       @category = Category.find(params[:category_id])
 
-      @items = @category.items.order(created_at: :desc).where(sale_status: "販売可").page(params[:page]).per(8)
+      @items = @category.items
 
 
     else
-      @items = Item.where(sale_status: "販売可").page(params[:page]).per(12)
+      @items = Item.all
 
     end
   end
@@ -22,5 +22,5 @@ class Public::ItemsController < ApplicationController
   	@category = Category.all
   	@item = Item.find(params[:id])
   end
+ end
 
-end

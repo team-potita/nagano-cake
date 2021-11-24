@@ -32,8 +32,11 @@ class DeviseCreateEndUsers < ActiveRecord::Migration[5.0]
       # t.string   :unlock_token # Only if unlock strategy is :email or :both
       # t.datetime :locked_at
 
-
-
+      t.integer :postal_code, null: false
+      t.string :prefecture_code, null: false
+      t.string :city, null: false
+      t.string :street, null: false
+      t.string :other_address # 番地以降の住所がない場合もあるため、null: falseはつけない
 
 
       t.timestamps null: false
@@ -44,5 +47,5 @@ class DeviseCreateEndUsers < ActiveRecord::Migration[5.0]
     # add_index :end_users, :confirmation_token,   unique: true
     # add_index :end_users, :unlock_token,         unique: true
   end
-  
+
 end

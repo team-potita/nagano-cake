@@ -77,8 +77,7 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
-    domain_name (0.5.20190701)
-      unf (>= 0.0.5, < 1.0.0)
+
     erubi (1.10.0)
     execjs (2.8.1)
     ffi (1.15.4)
@@ -248,6 +247,7 @@ DEPENDENCIES
   byebug
   coffee-rails (~> 4.2)
   devise
+  enum_help
   jbuilder (~> 2.5)
   jquery-rails
   kaminari (~> 1.2.1)
