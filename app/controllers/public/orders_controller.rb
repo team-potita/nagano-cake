@@ -1,8 +1,7 @@
 class Public::OrdersController < ApplicationController
+  before_action :authenticate_end_user!
 
   def index
-    @item = Item.find(params[:item_id])
-    @order = @item.order
     @orders = Order.all
   end
 

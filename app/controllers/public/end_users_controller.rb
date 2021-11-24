@@ -10,12 +10,12 @@ class Public::EndUsersController < ApplicationController
   end
   
   def unsubscribe
-    @user = User.find_by(name: params[:name])
+    @end_user = EndUser.find_by(name: params[:name])
   end
 
   def withdraw
-    @user = User.find_by(name: params[:name])
-    @user.update(is_valid: false)
+    @end_user = EndUser.find_by(name: params[:name])
+    @end_user.update(is_valid: false)
     reset_session
     redirect_to root_path
   end
