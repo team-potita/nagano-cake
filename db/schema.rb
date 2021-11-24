@@ -70,13 +70,14 @@ ActiveRecord::Schema.define(version: 2021_11_24_042337) do
   create_table "items", force: :cascade do |t|
     t.integer "category_id"
     t.string "name"
-    t.string "image_id"
+    t.string "image"
     t.string "item"
     t.integer "price"
     t.datetime "create_at"
     t.datetime "updated_at", null: false
     t.datetime "created_at", null: false
     t.boolean "is_active", default: true
+    t.string "caption"
   end
 
   create_table "order_datails", force: :cascade do |t|
