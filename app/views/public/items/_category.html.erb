@@ -7,10 +7,10 @@
         </tr>
       </thead>
       <tbody>
-        <% category.each do |category| %>
+        <% @categorys.each do |category| %>
           <tr>
 
-            <td class="underline"><i class="fas fa-caret-right"> <%= link_to category.name, items_path(category.id), method: :get %></i></td>
+            <td class="underline"><i class="fas fa-caret-right"> <%= link_to category.name, items_path(category_id: category.id) %></i></td>
           </tr>
         <% end %>
       </tbody>

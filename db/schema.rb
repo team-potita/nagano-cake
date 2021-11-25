@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_25_054245) do
+ActiveRecord::Schema.define(version: 2021_11_24_042337) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer "end_user_id"
@@ -53,6 +53,11 @@ ActiveRecord::Schema.define(version: 2021_11_25_054245) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.integer "postal_code", null: false
+    t.string "prefecture_code", null: false
+    t.string "city", null: false
+    t.string "street", null: false
+    t.string "other_address"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "last_name"
