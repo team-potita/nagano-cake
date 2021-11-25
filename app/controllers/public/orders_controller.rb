@@ -6,8 +6,8 @@ class Public::OrdersController < ApplicationController
   end
 
   def show
-    @item = Item.find(params[:item_id])
-    @order = @item.order.new
+    @cart_items = CartItem.find(params[:cart_items_id])
+    @order = @cart_items.order.new
   end
 
   def new
@@ -16,10 +16,10 @@ class Public::OrdersController < ApplicationController
   end
 
   def create
-    @item = Item.find(params[:item_id])
-    @order = @item.order.new(order_params)
+    @cart_items = CartItem.find(params[:item_id])
+    @order = @cart_item.order.new(order_params)
     @order.save
-    redirect_to items_path
+    redirect_to order_confirm_orders_path
   end
 
   def confirm
@@ -27,19 +27,19 @@ class Public::OrdersController < ApplicationController
     @cart_items = current_end_user.cart_items
     @order.payment = params[:order][:payment]
     if params[:order][:address_option] == "0"
-      @order.postal_code = current_end_user.postal_code
+      @order.postcode = current_end_user.postcode
       @order.order_address = current_end_user.address
     elsif params[:order][:address_option] == "1"
       @sta = params[:order][:order_address].to_i
       binding.pry
       @order_address = Address.find(@sta)
-      @order.postal_code = @order_address.postal_code
+      @order.postcode = @order_address.postcode
       @order.order_address = @order_address.address
       @order.dear_name = @order_address.dear_name
-
     elsif params[:order][:address_option] == "2"
-      @order.postal_code = params[:order][:postal_code]
+      @order.postcode = params[:order][:postcode]
       @order.order_address = params[:order][:order_address]
+    redirect_to complete_orders_path
     end
   end
 
