@@ -4,7 +4,7 @@
   <% end %>
  <div class="row">
   <div class="col-3 mt-4">
-    <%= render 'category', categorys: @categorys %> <!--ジャンル-->
+    <%= render 'category', category: @category %> <!--ジャンル-->
   </div>
 
   <div class="col-9 my-3">
@@ -41,7 +41,7 @@
         <%= form_for (@cart_item) do |f| %>
           <%= f.number_field :quantity, min:1, placeholder: "個数選択" %><span>個</span>
           <%= f.hidden_field :item_id, :value => @item.id %>
-          <%= f.submit "カートに入れる", class: "btn btn-outline-danger align-items-end" %>
+          <%= f.submit "カートに入れる", class: "btn btn-success align-items-end" %>
     　　<% end %>
 
       </div>
