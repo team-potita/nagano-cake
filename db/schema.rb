@@ -10,12 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_25_054245) do
+ActiveRecord::Schema.define(version: 2021_11_25_123516) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer "end_user_id"
     t.string "postcode"
-    t.string "addresses"
+    t.string "address"
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
