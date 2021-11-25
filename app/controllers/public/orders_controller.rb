@@ -16,10 +16,12 @@ class Public::OrdersController < ApplicationController
   end
 
   def create
-    @cart_items = CartItem.find(params[:item_id])
-    @order = @cart_item.order.new(order_params)
+    #@cart_items = CartItem.find(params[:item_id])
+    @order = Order.new(order_params)
+    @order.end_user_id = current_end_user.id
     @order.save
-    redirect_to order_confirm_orders_path
+     redirect_to order_confirm_orders_path
+
   end
 
   def confirm
