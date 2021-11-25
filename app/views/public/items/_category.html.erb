@@ -1,5 +1,4 @@
 
-
     <table class="table table-hover table-bordered">
       <thead>
         <tr>
@@ -7,10 +6,10 @@
         </tr>
       </thead>
       <tbody>
-        <% @categorys.each do |category| %>
+        <% category.each do |category| %>
           <tr>
 
-            <td class="underline"><i class="fas fa-caret-right"> <%= link_to category.name, items_path(category_id: category.id) %></i></td>
+            <td class="underline"><i class="fas fa-caret-right"> <%= link_to category.name, items_path(category.id), method: :get %></i></td>
           </tr>
         <% end %>
       </tbody>
