@@ -9,14 +9,17 @@ class Public::CartItemsController < ApplicationController
  def create
    @cart_item = CartItem.new(cart_item_params)
    @cart_item.end_user_id = current_end_user.id
-   @validate_into_cart = @cart_item.validate_into_cart
-   if @validate_into_cart == false
-      flash[:into_cart_error] = "個数が選択されていないか、すでにカートに追加されているアイテムです。"
-      redirect_to item_path(params[:cart_item][:item_id])
-   else
-     @cart_item.save
-     redirect_to cart_items_path
+   @cart_items = current_end_user.cart_items
+   @cart_items.each do |cart_item|
+       if cart_item.item_id == @cart_item.item_id
+          new_quantity = cart_item.quantity + @cart_item.quantity
+          cart_item.update(quantity: new_quantity)
+          @cart_item.delete
+       end
    end
+   @cart_item.save
+   redirect_to cart_items_path
+
  end
 
  def update

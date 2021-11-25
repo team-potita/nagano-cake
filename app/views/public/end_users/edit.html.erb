@@ -4,7 +4,7 @@ rails <div class="container">
 
       <h4 class="mb-4">会員情報編集</h4>
 
-      <%= form_with model: @end_user, url: customers_path, local: true do |f| %>
+      <%= form_with model: @end_user, url: end_users_update_path, method: :PATCH do |f| %>
 
         <table class="table table-borderless">
           <tr>
@@ -45,7 +45,7 @@ rails <div class="container">
           <tr>
             <td></td>
             <td><%= f.submit '編集内容を保存',class: "btn btn-success rounded-pill mt-3" %></td>
-            <td><%= link_to "退会する",end_users_quit_path, class: "btn btn-danger rounded-pill mt-3" %></td>
+            <td><%= link_to "退会する", end_users_unsubscribe_path, class: "btn btn-danger rounded-pill mt-3" %></td>
           </tr>
         </table>
 

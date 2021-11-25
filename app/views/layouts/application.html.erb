@@ -60,7 +60,7 @@
             <% elsif end_user_signed_in? %>
               <span class="mt-2" style="color: white;">ようこそ、<%= current_end_user.last_name %>さん</span>
               <li class="nav-item">
-                <%= link_to end_users_path, class: 'nav-link text-light  ml-2' do %>
+                <%= link_to end_users_my_page_path, class: 'nav-link text-light  ml-2' do %>
                 マイページ
                 <% end %>
               </li>
