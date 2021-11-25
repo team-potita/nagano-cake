@@ -1,10 +1,33 @@
 Rails.application.routes.draw do
+  scope module: :public do
+  root to: "homes#top"
+  get 'end_users/my_page' => 'end_users#show'
+  get 'end_users/edit'
+  patch 'end_users/update'
+
+    get 'end_users/unsubscribe'
+    patch 'end_users/withdraw'
+
+      resources :items, only: [:index, :show]
+      resources :orders, only: [:index, :show, :new, :create] do
+        collection do
+          post 'order/confirm' => 'orders#confirm'
+          get 'complete'
+        end
+      end
+      resources :cart_items, only: [:index, :create, :update, :destory] do
+        delete 'destroy_all'
+      end
+      resources :categorys, only: [:index]
+      resources :address, except: [:new, :show]
+    end
+
     #管理者用のルーティング
     devise_for :admin,skip:[:registrations, :passwords], controllers: {
     sessions:'admin/sessions'
   }
 #エンドユーザー側のルーティング設定
-devise_for :end_users,skip: [:passwords,], controllers: {
+devise_for :end_users, path: "", skip: [:passwords,], controllers: {
   sessions:      'public/sessions',
   registrations: 'public/registrations'
 }
@@ -22,28 +45,5 @@ devise_for :end_users,skip: [:passwords,], controllers: {
 
   end
 
-  scope module: :public do
-    root to: "homes#top"
-    resource :end_users, only: [:show, :edit, :update] do
-      get 'unsubscribe' => 'end_users#unsubscribe', as: 'confirm_unsubscribe'
-      # patch ':id/withdraw' => 'end_users#withdraw', as: 'withdraw_end_user'
-      patch 'withdraw' => 'end_users#withdraw'
-    end
-
-    resources :items, only: [:index, :show]
-    resources :orders, only: [:index, :show, :new, :create] do
-        collection do
-          post 'order/confirm' => 'orders#confirm'
-          get 'complete'
-        end
-      end
-    resources :cart_items, only: [:index, :create, :update, :destory] do
-      collection do
-      delete 'destroy_all'
-     end
-    end
-    resources :categorys, only: [:index]
-
-    resources :address, except: [:new, :show]
-  end
 end
+

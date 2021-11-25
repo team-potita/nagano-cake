@@ -14,6 +14,7 @@
 
 <%= form_with model:[@cart_items, @order], do |f| %>
   <%= f.hidden_field :amount %>
+
   <%= f.hidden_field :quantity %>
   <%= f.submit "注文を確定する", class: 'btn btn-success' %>
 <% end %>
