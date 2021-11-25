@@ -1,19 +1,11 @@
 class Public::ItemsController < ApplicationController
-
- def index
+  def index
   	  @categorys = Category.all
-
-
     if params[:category_id]
-
       @category = Category.find(params[:category_id])
-
       @items = @category.items
-
-
     else
       @items = Item.all
-
     end
   end
 
@@ -22,5 +14,4 @@ class Public::ItemsController < ApplicationController
   	@category = Category.all
   	@item = Item.find(params[:id])
   end
- end
-
+end
