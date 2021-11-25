@@ -16,8 +16,10 @@ Rails.application.routes.draw do
         end
       end
       resources :cart_items, only: [:index, :create, :update, :destory] do
+        collection do
         delete 'destroy_all'
       end
+    end
       resources :categorys, only: [:index]
       resources :address, except: [:new, :show]
     end
