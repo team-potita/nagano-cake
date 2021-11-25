@@ -44,4 +44,6 @@ devise_for :end_users, path: "", skip: [:passwords,], controllers: {
 
 
   end
+
 end
+

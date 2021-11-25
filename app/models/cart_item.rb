@@ -1,6 +1,6 @@
 class CartItem < ApplicationRecord
 
-  has_many :items
+  belongs_to :item
   #def eee
     # price * amount
  # end
