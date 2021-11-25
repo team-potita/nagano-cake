@@ -1,13 +1,17 @@
-<div class="offset-1 col-10">
-	<div class="row d-flex aline-items-center">
-		<strong class="red-border px-3 pb-1">ジャンル</strong>
-	</div>
-		<%= link_to items_path do %>
-			<div class="row mx-auto mt-3">
-			<span class="brown-border text-center"><%= category.name %></span>
-			</div>
-		<% end %>
-</div>
 
 
+    <table class="table table-hover table-bordered">
+      <thead>
+        <tr>
+          <th class="active text-center"><h5 class="genre_said">ジャンル検索</h5></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% category.each do |category| %>
+          <tr>
 
+            <td class="underline"><i class="fas fa-caret-right"> <%= link_to category.name, items_path(category.id), method: :get %></i></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
