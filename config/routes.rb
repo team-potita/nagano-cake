@@ -38,7 +38,9 @@ devise_for :end_users,skip: [:passwords,], controllers: {
         end
       end
     resources :cart_items, only: [:index, :create, :update, :destory] do
+      collection do
       delete 'destroy_all'
+     end
     end
     resources :categorys, only: [:index]
 
