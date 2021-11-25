@@ -6,8 +6,8 @@ class Public::OrdersController < ApplicationController
   end
 
   def show
-    @cart_items = CartItem.find(params[:cart_items_id])
-    @order = @cart_items.order.new
+    @cart_item = CartItem.find(params[:cart_items_id])
+    @order = @cart_item.order.new
   end
 
   def new
