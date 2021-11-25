@@ -45,7 +45,7 @@
     <% @addresses.each do |address| %>
     <tr class="brown-border">
      	<td><%= address.postcode %></td>
-     	<td><%= address.addresses %></td>
+     	<td><%= address.address %></td>
      	<td><%= address.name %></td>
      	<td><%= link_to "編集する", edit_address_path(address),  class: "btn btn-sm btn-outline-danger" %>
           <%= link_to "削除する", address_path(address), method: :delete ,data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-outline-danger" %>

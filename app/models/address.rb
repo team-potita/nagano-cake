@@ -3,5 +3,5 @@ class Address < ApplicationRecord
 
   validates :name, presence: true
   validates :postcode, presence: true
-  validates :addresses, presence: true
+  validates :address, presence: true
 end
