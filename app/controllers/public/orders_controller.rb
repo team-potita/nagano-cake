@@ -3,11 +3,7 @@ class Public::OrdersController < ApplicationController
 
   def index
     @orders = Order.all
-  end
 
-  def show
-    @cart_item = CartItem.find(params[:cart_items_id])
-    @order = @cart_item.order.new
   end
 
   def new
@@ -20,13 +16,14 @@ class Public::OrdersController < ApplicationController
     @order = current_end_user.orders.new(order_params)
     if @order.save
       cart_items.each do |cart|
-        order_detail = OrderDetail.new
-        order_detail.item_id = @order.id
+        order_detail = OrderDatail.new
+        order_detail.item_id = cart.item_id
         order_detail.quantity = cart.item.price
+        order_detail.order_id = @order.id
         order_detail.save
-        cart_items.destory_all
-        redirect_to order_complete_orders_path
+        cart_items.destroy_all
       end
+      redirect_to complete_orders_path
     else
       @order = Order.new(order_params)
       render :new
@@ -38,6 +35,7 @@ class Public::OrdersController < ApplicationController
     @cart_items = current_end_user.cart_items
     @order.peyment_method = (params[:order][:payment]).to_i
     if params[:order][:address_option] == "0"
+      @order.name = current_end_user.last_name
       @order.postcode = current_end_user.postcode
       @order.address = current_end_user.address
     elsif params[:order][:address_option] == "1"
@@ -50,26 +48,37 @@ class Public::OrdersController < ApplicationController
     elsif params[:order][:address_option] == "2"
       @order.postcode = params[:order][:postcode]
       @order.order_address = params[:order][:order_address]
-    redirect_to complete_orders_path
+      redirect_to complete_orders_path
     end
-    @total_payment = 0
+    @total_price = calculate(current_end_user)
   end
 
   def complete
   end
 
+  def show
+    @order = Order.find(params[:id])
+  end
+
+
+  def calculate(user)
+  total_price = 0
+  user.cart_items.each do |cart_item|
+  total_price += cart_item.quantity * cart_item.item.price
+   end
+   return (total_price * 1.1).floor
+    end
+
 private
   def order_params
     params.require(:order)
-    .permit(:order,
-            :address_option,
+    .permit(:address,
             :postcode,
-            :order_address,
-            :payment,
-            :cart_item_id,
-            :include_blank,
             :end_user_id,
-            :name)
+            :name,
+            :total_price,
+            :peyment_method,
+            :shipping_fee)
   end
 
 end

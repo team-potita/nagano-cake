@@ -10,7 +10,7 @@
         <tr>
           <th>配送先</th>
           <td>
-            〒<%= @order.postal_code %><br>
+            〒<%= @order.postcode %><br>
             <%= @order.address %><br>
             <%= @order.name %>
           </td>
@@ -18,7 +18,7 @@
         <tr>
           <th>支払い方法</th>
           <td>
-            <%= @order.payment_method_i18n %>
+            <%= @order.peyment_method_i18n %>
           </td>
         </tr>
         <tr>

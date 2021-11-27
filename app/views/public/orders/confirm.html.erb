@@ -35,12 +35,12 @@
           <td><%= @order.shipping_fee %></td>
         </tr>
         <tr>
-          <th scope="row">商品合計</th>
-          <td><%= @total_payment-800 %></td>
+          <th scope="row">合計金額</th>
+          <td><%= @total_price %></td>
         </tr>
         <tr>
-          <th scope="row">請求金額</th>
-          <td><%= @total_payment %></td>
+          <th scope="row">請求合計</th>
+          <td><%= @total_price + 800 %></td>
         </tr>
       </table>
     </div>
@@ -55,15 +55,15 @@
 
   </div>
 
-  <%= form_with model: @order, url: complete_orders_path, method: :get,local: true do |f| %>
-    <%= f.hidden_field :postal_code, value: @order.postcode  %>
+  <%= form_with model: @order, url: orders_path, local: true do |f| %>
+    <%= f.hidden_field :postcode, value: @order.postcode  %>
     <%= f.hidden_field :address, value: @order.address %>
     <%= f.hidden_field :name, value: @order.name %>
-    <%= f.hidden_field :shipping_cost, value: @order.shipping_fee %>
-    <%= f.hidden_field :total_payment, value: @order.total_price %>
+    <%= f.hidden_field :shipping_fee, value: 800 %>
+    <%= f.hidden_field :total_price, value: @total_price + 800 %>
     <%#= f.hidden_field :status, value: @order.status %>
-    <%= f.hidden_field :payment_method, value: @order.peyment_method %>
-    <%= f.hidden_field :customer_id, value: current_end_user.id %>
+    <%= f.hidden_field :peyment_method, value: @order.peyment_method %>
+    <%= f.hidden_field :end_user_id, value: current_end_user.id %>
     <%= f.submit '注文を確定する',class: "btn btn-success rounded-pill mt-3" %>
   <% end %>
 
