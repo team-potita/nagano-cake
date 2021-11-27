@@ -16,12 +16,21 @@ class Public::OrdersController < ApplicationController
   end
 
   def create
-    #@cart_items = CartItem.find(params[:item_id])
-    @order = Order.new(order_params)
-    @order.end_user_id = current_end_user.id
-    @order.save
-     redirect_to order_confirm_orders_path
-
+    cart_items = current_end_user.cart_items.all
+    @order = current_end_user.order.new(order_params)
+    if @order.save!
+      cart_items.each do |cart|
+        order_detail = OrderDetail.new
+        order_detail.item_id = @order.id
+        order_detail.quantity = cart.item.price
+        order_detail.save
+        cart_items.destory_all
+        redirect_to order_complete_orders_path
+      end
+    else
+      @order.new(order_params)
+      render :new
+    end
   end
 
   def confirm
@@ -43,14 +52,24 @@ class Public::OrdersController < ApplicationController
       @order.order_address = params[:order][:order_address]
     redirect_to complete_orders_path
     end
+    @total_payment = 0
+  end
+
+  def complete
   end
 
 private
   def order_params
     params.require(:order)
-    .permit(:amount,
-            :quantity,
-            :item_id)
+    .permit(:order,
+            :address_option,
+            :postcode,
+            :order_address,
+            :payment,
+            :cart_item_id,
+            :include_blank,
+            :end_user_id,
+            :name)
   end
 
 end

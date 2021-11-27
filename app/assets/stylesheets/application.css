@@ -13,3 +13,11 @@
  *= require_tree .
  *= require_self
  */
+
+.navbar-brand{
+  font-family: 'Sacramento', cursive;
+}
+
+main{
+  font-family: 'Montserrat', sans-serif;
+}
