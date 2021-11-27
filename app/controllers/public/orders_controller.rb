@@ -6,26 +6,30 @@ class Public::OrdersController < ApplicationController
   end
 
   def show
-    @cart_item = CartItem.find(params[:cart_items_id])
-    @order = @cart_item.order.new
+    @cart_items = CartItem.find(params[:cart_items_id])
+    @order = @cart_items.order.new
   end
 
   def new
     @order = Order.new
     @end_user = current_end_user
+    #@addresses = @current_end_user.addresses
+    #@address = Address.new
   end
 
   def create
-    @cart_items = CartItem.find(params[:item_id])
-    @order = @cart_item.order.new(order_params)
+    #@cart_items = CartItem.find(params[:item_id])
+    @order = Order.new(order_params)
+    @order.end_user_id = current_end_user.id
     @order.save
-    redirect_to order_confirm_orders_path
+    redirect_to confirm_orders_path
+    #redirect_to complete_orders_path
   end
 
   def confirm
     @order = Order.new
     @cart_items = current_end_user.cart_items
-    @order.payment = params[:order][:payment]
+    #@order.payment = params[:order][:payment]
     if params[:order][:address_option] == "0"
       @order.postcode = current_end_user.postcode
       @order.order_address = current_end_user.address
