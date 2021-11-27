@@ -35,12 +35,11 @@ class Public::OrdersController < ApplicationController
     @cart_items = current_end_user.cart_items
     @order.peyment_method = (params[:order][:payment]).to_i
     if params[:order][:address_option] == "0"
-      @order.name = current_end_user.last_name
+      @order.name = current_end_user.last_name + current_end_user.first_name
       @order.postcode = current_end_user.postcode
       @order.address = current_end_user.address
     elsif params[:order][:address_option] == "1"
-      @sta = params[:order][:order_address].to_i
-      binding.pry
+      @sta = params[:order][:tyuumon_address].to_i
       @order_address = Address.find(@sta)
       @order.postcode = @order_address.postcode
       @order.order_address = @order_address.address
