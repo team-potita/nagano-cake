@@ -26,16 +26,16 @@
 
           <div class="offset-2 col-2 mb-3">会員ステータス</div>
           <div class="col-8">
-            <% if @.is_deleted? %>
-              <span class="text-secondary">退会</span>
-            <% else %>
+            <% if @end_user.is_valid %>
               <span class="text-success">有効</span>
+            <% else %>
+              <span class="text-secondary">退会</span>
             <% end %>
           </div>
         </div>
 
       <div class="offset-2 col-8 mt-3">
-      <%= link_to "編集する",edit_admin_end_users_path(@end_user),class:"btn btn-success mr-5" %>
+      <%= link_to "編集する",edit_admin_end_user_path(@end_user),class:"btn btn-success mr-5" %>
       <%= link_to "注文履歴一覧を見る",admin_root_path(sort: 1),class:"btn btn-primary mx-5" %>
       </div>
     </div>
