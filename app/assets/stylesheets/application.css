@@ -13,9 +13,14 @@
  *= require_tree .
  *= require_self
  */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,500&display=swap');
+
+nav{
+  height: 80px;
+}
 
 .navbar-brand{
-  font-family: 'Sacramento', cursive;
+  font-family: 'Montserrat', sans-serif;
 }
 
 main{

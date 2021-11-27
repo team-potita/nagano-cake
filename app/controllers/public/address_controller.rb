@@ -1,16 +1,15 @@
 class Public::AddressController < ApplicationController
   def index
-    @address_new = Address.new
+    @address = Address.new
     @addresses = current_end_user.addresses
   end
 
   def create
     @address = Address.new(address_params)
     @address.end_user_id = current_end_user.id
-    if @address.save!
+    if @address.save
        redirect_to address_index_path
     else
-       @address_new = Address.new
        @addresses = current_end_user.addresses
        render :index
     end
