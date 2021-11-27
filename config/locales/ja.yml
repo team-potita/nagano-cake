@@ -1,7 +1,8 @@
 ja:
+
     enums:
       order:
-        payment_method:
+        peyment_method:
           credit_card: "クレジットカード"
           transfer: "銀行振込"
     activerecord:
@@ -214,3 +215,4 @@ ja:
         long: "%Y/%m/%d %H:%M"
         short: "%m/%d %H:%M"
       pm: 午後
+

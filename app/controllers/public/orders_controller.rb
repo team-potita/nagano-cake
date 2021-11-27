@@ -17,8 +17,8 @@ class Public::OrdersController < ApplicationController
 
   def create
     cart_items = current_end_user.cart_items.all
-    @order = current_end_user.order.new(order_params)
-    if @order.save!
+    @order = current_end_user.orders.new(order_params)
+    if @order.save
       cart_items.each do |cart|
         order_detail = OrderDetail.new
         order_detail.item_id = @order.id
@@ -28,7 +28,7 @@ class Public::OrdersController < ApplicationController
         redirect_to order_complete_orders_path
       end
     else
-      @order.new(order_params)
+      @order = Order.new(order_params)
       render :new
     end
   end
@@ -36,10 +36,10 @@ class Public::OrdersController < ApplicationController
   def confirm
     @order = Order.new
     @cart_items = current_end_user.cart_items
-    @order.payment = params[:order][:payment]
+    @order.peyment_method = (params[:order][:payment]).to_i
     if params[:order][:address_option] == "0"
       @order.postcode = current_end_user.postcode
-      @order.order_address = current_end_user.address
+      @order.address = current_end_user.address
     elsif params[:order][:address_option] == "1"
       @sta = params[:order][:order_address].to_i
       binding.pry
