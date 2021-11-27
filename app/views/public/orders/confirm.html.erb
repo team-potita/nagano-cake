@@ -61,7 +61,7 @@
     <%= f.hidden_field :name, value: @order.name %>
     <%= f.hidden_field :shipping_fee, value: 800 %>
     <%= f.hidden_field :total_price, value: @total_price + 800 %>
-    <%#= f.hidden_field :status, value: @order.status %>
+    <%= f.hidden_field :status, value: @order.status %>
     <%= f.hidden_field :peyment_method, value: @order.peyment_method %>
     <%= f.hidden_field :end_user_id, value: current_end_user.id %>
     <%= f.submit '注文を確定する',class: "btn btn-success rounded-pill mt-3" %>

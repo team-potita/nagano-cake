@@ -14,6 +14,7 @@ class Public::OrdersController < ApplicationController
   def create
     cart_items = current_end_user.cart_items.all
     @order = current_end_user.orders.new(order_params)
+    @order.status = 0
     if @order.save
       cart_items.each do |cart|
         order_detail = OrderDatail.new
@@ -67,7 +68,7 @@ class Public::OrdersController < ApplicationController
   total_price += cart_item.quantity * cart_item.item.price
    end
    return (total_price * 1.1).floor
-    end
+  end
 
 private
   def order_params
@@ -78,7 +79,8 @@ private
             :name,
             :total_price,
             :peyment_method,
-            :shipping_fee)
+            :shipping_fee,
+            :status)
   end
 
 end
