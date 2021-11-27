@@ -15,7 +15,7 @@
         <tbody>
           <tr>
             <td><%= end_user.id %></td>
-            <td><%= link_to end_user.full_name, admin_end_users_path %></td>
+            <td><%= link_to end_user.full_name, admin_end_user_path(end_user) %></td>
             <td nowrap><%= end_user.email %></td>
             <td>
               <% if end_user.is_valid == false%>
