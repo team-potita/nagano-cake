@@ -15,10 +15,10 @@
         <tbody>
           <tr>
             <td><%= end_user.id %></td>
-            <td><%= link_to end_user.full_name, admin_customer_path(customer) %></td>
+            <td><%= link_to end_user.full_name, admin_end_users_path %></td>
             <td nowrap><%= end_user.email %></td>
             <td>
-              <% if end_user.is_deleted? %>
+              <% if end_user.is_valid == false%>
                 <span class="text-secondary">退会</span>
               <% else %>
                 <span class="text-success">有効</span>
